@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' charset="UTF-8" content='width=device-width, initial-scale=1'>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <style>
+            body{
+                background-color: black;
+            }
+            #PipBoy{
+                height: 750px;
+                width: 750px;
+                border: 5px solid transparent;
+                border-radius: 5%;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+            .ButMenu{
+                background-color: transparent;
+                color: rgb(72, 228, 25);
+                font-family: Arial black;
+                font-size: 30px;
+                border: 3px solid rgb(72, 228, 25);
+                border-top-color: transparent;
+                cursor: pointer;
+                border-left-color: transparent;
+                border-right-color: transparent;
+            }
+            #StatButton{
+                border: 5px solid rgb(72, 228, 25);
+                border-bottom-color: black;
+                border-top-left-radius: 10%;
+                border-top-right-radius: 10%;
+                background-color: black;
+            }
+            #PipBoyMenu{
+                border: 5px solid rgb(72, 228, 25);
+                height: 49px;
+                width: 635px;
+                border-top-color: transparent;
+                border-left-color: transparent;
+                border-right-color: transparent;
+                text-align: center;
+            }
+            #PipBoyButtonStatMenu{
+                text-align: left;
+                position: relative;
+                left: 75px;
+            }
+            #StatusButton{
+                background-color: transparent;
+                color: rgb(72, 228, 25);
+                border-color: transparent;
+                cursor: pointer;
+                font-size: 20px;
+            }
+            #SpecialButton{
+                background-color: transparent;
+                color: rgb(72, 228, 25);
+                border-color: transparent;
+                cursor: pointer;
+                opacity: 0.75;
+                font-size: 20px;
+            }
+            #PerksButton{
+                background-color: transparent;
+                color: rgb(72, 228, 25);
+                border-color: transparent;
+                cursor: pointer;
+                opacity: 0.45;
+                font-size: 20px;
+            }
+            #PipBoyButtonStatMenu2{
+                text-align: center;
+            }
+            #BarLoadingStat1{
+                width: 50px;
+                height: 10px;
+                border: 2px solid rgb(60, 255, 0);
+                background-color: rgb(60, 255, 0);
+                outline: 1px solid rgb(60, 255, 0);
+                filter: drop-shadow(1px 1px 1px rgb(60, 255, 0));
+                position: relative;
+                right: 70px;
+                top: 90px;
+            }
+            #BarLoadingStat2{
+                width: 50px;
+                height: 10px;
+                border: 2px solid rgb(60, 255, 0);
+              
+                outline: 1px solid rgb(60, 255, 0);
+                filter: drop-shadow(1px 1px 1px rgb(60, 255, 0));
+                background-size: 25px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(50deg, rgb(60, 255, 0),rgb(60, 255, 0));
+            }
+            #BarLoadingStat3{
+                width: 50px;
+                height: 10px;
+                border: 2px solid rgb(60, 255, 0);
+               
+                outline: 1px solid rgb(60, 255, 0);
+                filter: drop-shadow(1px 1px 1px rgb(60, 255, 0));
+                position: relative;
+                left: 70px;
+                top: 90px;
+                background-size: 35px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(50deg, rgb(60, 255, 0),rgb(60, 255, 0));
+            }
+            #BarLoadingStat4{
+                width: 50px;
+                height: 10px;
+                border: 2px solid rgb(60, 255, 0);
+                background-size: 45px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(50deg, rgb(60, 255, 0),rgb(60, 255, 0));
+                outline: 1px solid rgb(60, 255, 0);
+                filter: drop-shadow(1px 1px 1px rgb(60, 255, 0));
+                position: relative;
+                
+                bottom: 50px;
+            }
+            #BarLoadingStat5{
+                width: 50px;
+                height: 10px;
+                border: 2px solid rgb(60, 255, 0);
+                background-size: 50px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(50deg, rgb(60, 255, 0),rgb(60, 255, 0));
+                outline: 1px solid rgb(60, 255, 0);
+                filter: drop-shadow(1px 1px 1px rgb(60, 255, 0));
+                position: relative;
+                
+                bottom: 50px;
+
+            }
+            #BarLoadingStat6{
+
+                width: 50px;
+                height: 10px;
+                border: 2px solid rgb(60, 255, 0);
+                background-size: 50px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(50deg, rgb(60, 255, 0),rgb(60, 255, 0));
+                outline: 1px solid rgb(60, 255, 0);
+                filter: drop-shadow(1px 1px 1px rgb(60, 255, 0));
+                
+            }
+            #PipBoyButtonStatMenu3{
+                text-align: center;
+            }
+            #PistolIcon{
+                height: 75px;
+                width: 75px;
+            }
+
+            #MiraIcon{
+                height: 35px;
+                width: 35px;
+                position: relative;
+                top: 5px;
+            }
+            
+            #PistolMenu{
+                height: 75px;
+                width: 75px;
+                background-size: 550px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(90deg, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black);
+                border: 3px solid black;
+            }
+
+            table{
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            #MiraMenu{
+                border: 3px solid black;
+                height: 75px;
+                width: 50px;
+                background-size: 550px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(90deg, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black);
+            }
+
+            #MiraValue{
+                font-family: arial black;
+                color: rgb(60, 255, 0);
+                font-size: 25px;
+            }
+            #HelmetIcon{
+                height: 55px;
+                width: 70px;
+            }
+            #MilitaryMenu{
+                height: 75px;
+                width: 75px;
+                background-size: 550px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(90deg, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black);
+                border: 3px solid black;
+                border-left-width: 30px;
+            }
+            #ShieldIcon{
+                position: relative;
+                top: 12px;
+                scale: 1.5;
+                color: rgb(60, 255, 0);
+            }
+            #ShieldMenu{
+                border: 3px solid black;
+                height: 75px;
+                width: 50px;
+                background-size: 550px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(90deg, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black);
+            }
+            #ShieldValue{
+                font-family: arial black;
+                color: rgb(60, 255, 0);
+                font-size: 25px;
+            }
+            #BoltMenu{
+                border: 3px solid black;
+                height: 75px;
+                width: 50px;
+                background-size: 550px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(90deg, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black);
+            }
+            #BoltIcon{
+                position: relative;
+                top: 12px;
+                scale: 1.5;
+                color: rgb(60, 255, 0); 
+            }
+            #BoltValue{
+                font-family: arial black;
+                color: rgb(60, 255, 0);
+                font-size: 25px;
+            }
+            #RadiationMenu{
+                border: 3px solid black;
+                height: 75px;
+                width: 50px;
+                background-size: 550px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(90deg, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black);
+            }
+            #RadiationIcon{
+                position: relative;
+                top: 12px;
+                scale: 1.5;
+                color:rgb(60, 255, 0);
+            }
+            #RadiationValue{
+                font-family: arial black;
+                color: rgb(60, 255, 0);
+                font-size: 25px;
+            }
+            #PipBoyButtonStatMenu4{
+                text-align: left;
+            }
+            .pbbbstm4{
+                height: 40px;
+                width: 135px;
+                color: rgb(1, 41, 1);
+                font-family: arial;
+                font-weight: bold;
+                font-size: 18px;
+                border: 2px solid black;
+                background-size: 550px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(90deg, rgb(47, 187, 4), black,rgb(47, 187, 4),black, rgb(47, 187, 4), black,rgb(47, 187, 4),black, rgb(47, 187, 4), black,rgb(47, 187, 4),black, rgb(47, 187, 4), black,rgb(47, 187, 4),black, rgb(47, 187, 4), black,rgb(47, 187, 4),black, rgb(47, 187, 4), black,rgb(47, 187, 4),black, rgb(47, 187, 4), black,rgb(47, 187, 4),black, rgb(47, 187, 4), black,rgb(47, 187, 4),black, rgb(47, 187, 4), black,rgb(47, 187, 4),black, rgb(47, 187, 4), black,rgb(47, 187, 4),black);
+            }
+            #PipBoyButtonStatMenu7{
+                text-align: center;
+            }
+            .pbbbstm5{
+                height: 40px;
+                width: 135px;
+                color: rgb(60, 255, 0);
+                font-family: arial;
+                font-weight: bold;
+                font-size: 18px;
+                border: 2px solid black;
+                background-size: 550px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(90deg, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black);
+            }
+            #LevelIcon{
+                height: 40px;
+                width: 480px;
+                color: rgb(60, 255, 0);
+                font-family: arial;
+                font-weight: bold;
+                font-size: 18px;
+                border: 2px solid black;
+                background-size: 550px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(90deg, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black, green, black,green,black);
+            }
+            #PipBoyButtonStatMenu5{
+                text-align: left;
+                display: none;
+            }
+            #PipBoyButtonStatMenu6{
+                text-align: left;
+                display: none;
+            }
+            #BarLoadingStat7{
+                width: 250px;
+                height: 10px;
+                border: 2px solid rgb(60, 255, 0);
+                background-size: 45px;
+                background-repeat: repeat-y;
+                background-image: -webkit-linear-gradient(50deg, rgb(60, 255, 0),rgb(60, 255, 0));
+                outline: 1px solid rgb(60, 255, 0);
+                filter: drop-shadow(1px 1px 1px rgb(60, 255, 0));
+            }
+            .SpecialBut{
+                font-size: 18px;
+                width: 300px;
+                height: 50px;
+                color: green;
+                font-weight: 500;
+                border: 3px solid black;
+                text-align: left;
+                background-color: transparent;
+            }
+            .SpecialBut:hover{
+                background-color: rgb(60, 255, 0);
+            }
+            #SpecialNum1{
+                position: relative;
+                left: 185px;
+            }
+            #SpecialNum2{
+                position: relative;
+                left: 168px;
+            }
+            #SpecialNum3{
+                position: relative;
+                left: 168px;
+            }
+            #SpecialNum3{
+                position: relative;
+                left: 168px;
+            }
+            #SpecialNum4{
+                position: relative;
+                left: 178px;
+            }
+            #SpecialNum5{
+                position: relative;
+                left: 165px;
+            }
+            #SpecialNum6{
+                position: relative;
+                left: 210px;
+            }
+            #SpecialNum7{
+                position: relative;
+                left: 220px;
+            }
+            #SpecialImage{
+                position: relative;
+                left: 35px;
+                bottom: 455px;
+                scale: 1.35;
+                opacity: 0;
+            }
+            #SpecialText{
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                text-align: left;
+                color: rgb(0, 173, 0);
+                scale: 0.85;
+                position: relative;
+                left: 245px;
+                bottom: 85px;
+            }
+            .PerksBut{
+                font-size: 18px;
+                width: 300px;
+                height: 50px;
+                color: green;
+                font-weight: 500;
+                border: 3px solid black;
+                text-align: left;
+                background-color: transparent;
+            }
+            .PerksBut:hover{
+               background-color: rgb(60, 255, 0);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="PipBoy">
+                <br>
+                 <div id="PipBoyMenu"> 
+                  <button class="ButMenu" id="StatButton">STAT</button><button class="ButMenu">INV</button><button class="ButMenu">DATA</button><button class="ButMenu">MAP</button><button class="ButMenu">RADIO</button> 
+                 </div>
+                 <br>
+                 <div id="PipBoyButtonStatMenu">
+                    <button id="StatusButton" onclick="StatusStatMenu()">STATUS</button> <button id="SpecialButton" onclick="SpecialStatMenu()">SPECIAL</button> <button id="PerksButton" onclick="PerksStatMenu()">PERKS</button>
+                 </div><br><br><br><br>
+                 <div id="PipBoyButtonStatMenu2">
+                    <img id="BarLoadingStat1"> <img id="BarLoadingStat2"> <img id="BarLoadingStat3"><br><br><br><br>
+                    <img id="BarLoadingStat4"><img src="BoyWalking.gif"><img id="BarLoadingStat5"><br><br>
+                    <img id="BarLoadingStat6">
+                 </div><br><br>
+                 <div id="PipBoyButtonStatMenu3">
+                    <table>
+                        <tr>
+                            <td id="PistolMenu"> <img id="PistolIcon" src="PISTOLAPIPBOY.png"> </td>
+                            <td id="MiraMenu"><img id="MiraIcon" src="MIRA.png"><br><br><label id="MiraValue">18</label></td>
+                            <td id="MilitaryMenu"> <img id="HelmetIcon" src="MILITARYHELMET.png"></td>
+                            <td id="ShieldMenu"><i class="fas fa-shield-alt" id="ShieldIcon"></i><br><br><br><label id="ShieldValue">10</label></td>
+                            <td id="BoltMenu"><i class="fa fa-bolt" id="BoltIcon"></i><br><br><br><label id="BoltValue">20</label></td>
+                            <td id="RadiationMenu"><i id="RadiationIcon" class="fa fa-radiation" ></i><br><br><br><label id="RadiationValue">10</label></td>
+                        </tr>
+                    </table>
+                 </div><br>
+                 <div id="PipBoyButtonStatMenu4">
+                    <button class="pbbbstm4">STIMPAK (0)</button><button class="pbbbstm4">RADAWAY (0)</button>
+                 </div>
+                 <div id="PipBoyButtonStatMenu5">
+                    <button class="SpecialBut" onmouseenter="StrengthStatMenu()">Strength            <label id="SpecialNum1">4</label></button><br>
+                    <button class="SpecialBut" onmouseenter="PerceptionStatMenu()">Perception          <label id="SpecialNum2">8</label></button><br>
+                    <button class="SpecialBut" onmouseenter="EnduranceStatMenu()">Endurance           <label id="SpecialNum3">3</label></button><br>
+                    <button class="SpecialBut" onmouseenter="CharismaStatMenu()">Charisma            <label id="SpecialNum4">5</label></button><br>
+                    <button class="SpecialBut" onmouseenter="IntelligenceStatMenu()">Intelligence        <label id="SpecialNum5">8</label></button><br>
+                    <button class="SpecialBut" onmouseenter="AgilityStatMenu()">Agility             <label id="SpecialNum6">3</label></button><br>
+                    <button class="SpecialBut" onmouseenter="LuckStatMenu()">Luck                <label id="SpecialNum7">3</label></button><br>
+                    <p id="SpecialText">Strength is a measure of your raw <br> physical power. It affects how much you <br> can carry, and the damage of all melee <br>attacks.</p>
+                 </div>
+                 <div id="PipBoyButtonStatMenu6">
+                    <button class="PerksBut">Animal Friend</button><br>
+                    <button class="PerksBut">Big Leagues</button><br>
+                    <button class="PerksBut">Bloody Mess</button><br>
+                    <button class="PerksBut">Pickpocket</button><br>
+                    <button class="PerksBut">Sniper</button><br>
+                 </div>
+                 <div id="PipBoyButtonStatMenu7">
+                    <button class="pbbbstm5">HP 115/115</button><button id="LevelIcon">LEVEL 6   <img id="BarLoadingStat7"></button><button class="pbbbstm5">AP 90/90</button><img id="SpecialImage" src="STRENGTH.gif">
+                 </div>
+        </div>
+        <script>
+            function StrengthStatMenu(){
+                document.getElementById("SpecialImage").src = "STRENGTH.gif";
+                document.getElementById("SpecialText").innerHTML = "Strength is a measure of your raw <br> physical power. It affects how much you <br> can carry, and the damage of all melee <br>attacks.";
+            }
+            function PerceptionStatMenu(){
+                document.getElementById("SpecialImage").src = "PERCEPTION.gif";
+                document.getElementById("SpecialText").innerHTML = "Perception is your environmental <br> awareness and \"sixth sense,\" and affects <br> weapon accuracy in V.A.T.S.<br><br>";
+            }
+            function EnduranceStatMenu(){
+                document.getElementById("SpecialImage").src = "ENDURANCE.gif";
+                document.getElementById("SpecialText").innerHTML = "Endurance is a measure of your overall <br> physical fitness. It affects your total <br> Health and the Action Point drain  <br> from sprinting.";
+            }
+            function CharismaStatMenu(){
+                document.getElementById("SpecialImage").src = "CHARISMA.gif";
+                document.getElementById("SpecialText").innerHTML = "Charisma is your ability to charm and <br> convince others. It affects your success <br> to persuade in dialogue and prices when <br> you barter.";
+            }
+            function IntelligenceStatMenu(){
+                document.getElementById("SpecialImage").src = "INTELLIGENCE.gif";
+                document.getElementById("SpecialText").innerHTML = "Intelligence is a measure of your overall <br> mental acuity, and affects the number of <br> Experience Points earned.<br><br>";
+            }
+            function AgilityStatMenu(){
+                document.getElementById("SpecialImage").src = "AGILITY.gif";
+                document.getElementById("SpecialText").innerHTML = "Agility is a measure of your overall <br> finesse and reflexes. It affects the <br> number of Action Points in V.A.T.S. and <br> your ability to sneak.";
+            }
+            function LuckStatMenu(){
+                document.getElementById("SpecialImage").src = "LUCK.gif";
+                document.getElementById("SpecialText").innerHTML = "Luck is a measure of your general good <br> fortune, and affects the recharge rate of <br> Critical Hits.<br><br>";
+            }
+            function SpecialStatMenu(){
+                document.getElementById("PipBoyButtonStatMenu2").style.display = "none";
+                document.getElementById("PipBoyButtonStatMenu3").style.display = "none";
+                document.getElementById("PipBoyButtonStatMenu4").style.display = "none";
+                document.getElementById("PipBoyButtonStatMenu5").style.display = "block";
+                document.getElementById("PipBoyButtonStatMenu6").style.display = "none";
+                document.getElementById("SpecialImage").style.opacity = "1";
+            }
+            function StatusStatMenu(){
+                document.getElementById("PipBoyButtonStatMenu2").style.display = "block";
+                document.getElementById("PipBoyButtonStatMenu3").style.display = "block";
+                document.getElementById("PipBoyButtonStatMenu4").style.display = "block";
+                document.getElementById("PipBoyButtonStatMenu5").style.display = "none";
+                document.getElementById("PipBoyButtonStatMenu6").style.display = "none";
+                document.getElementById("SpecialImage").style.opacity = "0";
+            }
+            function PerksStatMenu(){
+                document.getElementById("PipBoyButtonStatMenu2").style.display = "none";
+                document.getElementById("PipBoyButtonStatMenu3").style.display = "none";
+                document.getElementById("PipBoyButtonStatMenu4").style.display = "none";
+                document.getElementById("PipBoyButtonStatMenu5").style.display = "none";
+                document.getElementById("PipBoyButtonStatMenu6").style.display = "block";
+                document.getElementById("SpecialImage").style.opacity = "0";
+            }
+        </script>
+    </body>
+</html>
