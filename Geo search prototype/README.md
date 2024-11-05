@@ -29,7 +29,7 @@ This project is a prototype for a property locator map web application built usi
 
 ## Demo
 
-Include screenshots or a link to a live demo if available.
+
 
 ## Technologies Used
 
