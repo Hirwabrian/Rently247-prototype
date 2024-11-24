@@ -1,242 +1,135 @@
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBbJxFtFh6YcUVhiTRHFOxB_oSmSKOlRc0",
+    authDomain: "map-prototype-5aa15.firebaseapp.com",
+    projectId: "map-prototype-5aa15",
+    storageBucket: "map-prototype-5aa15.firebasestorage.app",
+    messagingSenderId: "783257672955",
+    appId: "1:783257672955:web:6237e8f83f90fbfa38a45e"
+};
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// Modal and Map functionality
+const modal = document.getElementById("mapModal");
+const btnMap = document.getElementById("openMapBtn");
+const close = document.getElementsByClassName("close")[0];
+
 // Initialize the map centered on Kigali, Rwanda
 const map = L.map('map').setView([-1.9441, 30.0619], 13);
 
+// Add the tile layer to the map
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-L.control.scale().addTo(map);
+// Initialize a marker cluster group
+const markers = L.markerClusterGroup();
+map.addLayer(markers);
 
-// Define the red marker icon for user location
+// Define a circle layer for the radius visualization
+let radiusCircle = null;
+
+// User marker
 const redIcon = L.icon({
-    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png', // URL for a red marker icon
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
     iconSize: [32, 32],
-    iconAnchor: [16, 32]
+    iconAnchor: [16, 32],
 });
-
-// Define a global variable to store the user location marker
 let userMarker = null;
 
-// Function to add or update the user's location marker
-/**
- * Adds or updates a user location marker on the map.
- *
- * If a user location marker already exists, this function updates its position.
- * Otherwise, it creates a new marker with a red icon at the specified latitude and longitude.
- * The marker will have a popup displaying "Your Location".
- *
- * @param {number} lat - The latitude of the user's location.
- * @param {number} lng - The longitude of the user's location.
- */
+// Function to update user marker
 function addUserLocationMarker(lat, lng) {
-    // If userMarker already exists, update its position
     if (userMarker) {
         userMarker.setLatLng([lat, lng]);
     } else {
-        // Otherwise, create a new marker with the red icon
         userMarker = L.marker([lat, lng], { icon: redIcon }).addTo(map);
         userMarker.bindPopup('<strong>Your Location</strong>', {
-            offset: [0, -20] // Adjust the Y offset to move the popup above the marker
+            offset: [0, -20]
         }).openPopup();
+    }
+    map.setView([lat, lng], 13);
+}
+
+// Function to update the radius visualization
+function updateRadius(lat, lng, range) {
+    if (radiusCircle) {
+        map.removeLayer(radiusCircle);
+    }
+    radiusCircle = L.circle([lat, lng], {
+        radius: range * 1000,
+        color: '#007bff',
+        fillColor: '#007bff',
+        fillOpacity: 0.2,
+    }).addTo(map);
+}
+
+// Function to add house markers based on filters
+async function addHouseMarkers(lat, lng, range, minBedrooms, minBathrooms, minPrice, maxPrice) {
+    markers.clearLayers(); // Clear existing markers
+
+    try {
+        // Fetch all properties from Firestore
+        const querySnapshot = await db.collection("properties").get();
+        const allProperties = querySnapshot.docs.map(doc => doc.data());
+
+        // Use Lodash for filtering
+        const filteredProperties = _.filter(allProperties, (property) => {
+            const distance = map.distance([lat, lng], [property.lat, property.lng]) / 1000; // Calculate distance in km
+            return (
+                distance <= range &&
+                property.price >= minPrice &&
+                property.price <= maxPrice &&
+                property.bedrooms >= minBedrooms &&
+                property.bathrooms >= minBathrooms
+            );
+        });
+
+        // Add filtered properties as markers on the map
+        filteredProperties.forEach((house) => {
+            const marker = L.marker([house.lat, house.lng]).addTo(map);
+            marker.bindPopup(`
+                <div class="popup-content">
+                    <img src="${house.imageUrl}" alt="${house.name}" class="popup-image">
+                    <div class="popup-details">
+                        <h3>${house.name}</h3>
+                        <p>${house.description}</p>
+                        <p><strong>Size:</strong> ${house.size}</p>
+                        <p><strong>Price:</strong> $${house.price}</p>
+                        <a href="${house.link}" target="_blank" class="popup-link">View More</a>
+                    </div>
+                </div>
+            `);
+            markers.addLayer(marker); // Add marker to the cluster group
+        });
+    } catch (error) {
+        console.error("Error retrieving properties from Firestore: ", error);
     }
 }
 
-/**
- * An array of house objects, each representing a property listing.
- * 
- * @typedef {Object} House
- * @property {string} name - The name of the property.
- * @property {number} lat - The latitude coordinate of the property.
- * @property {number} lng - The longitude coordinate of the property.
- * @property {string} price - The rental price of the property per month.
- * @property {string} description - A brief description of the property.
- * @property {string} size - The size of the property in square meters.
- * @property {string} imageUrl - The URL to an image of the property.
- * @property {string} link - The URL to the full listing of the property.
- * 
- * @type {House[]}
- */
-const houses = [
-    { 
-        name: "Luxury Apartment in Kiyovu", 
-        lat: -1.9460, 
-        lng: 30.0585, 
-        price: "$1,200 per month", 
-        description: "2-bedroom luxury apartment in the heart of Kiyovu", 
-        size: "110 sqm",
-        imageUrl: "images/apartments/kiyovu.jpg",
-        link: "https://example.com/listing1"
-    },
-    { 
-        name: "Cozy Townhouse in Kimihurura", 
-        lat: -1.9480, 
-        lng: 30.0620, 
-        price: "$900 per month", 
-        description: "Charming 2-bedroom townhouse with a garden in Kimihurura", 
-        size: "130 sqm",
-        imageUrl: "images/apartments/kimihurura.jpg",
-        link: "https://example.com/listing2"
-    },
-    { 
-        name: "Family Villa in Nyarutarama", 
-        lat: -1.9400, 
-        lng: 30.0700, 
-        price: "$2,500 per month", 
-        description: "Spacious 4-bedroom villa with private pool in Nyarutarama", 
-        size: "300 sqm",
-        imageUrl: "images/apartments/nyarutarama.jpg",
-        link: "https://example.com/listing3"
-    },
-    { 
-        name: "Modern Apartment in Gisozi", 
-        lat: -1.9186673694533758, 
-        lng: 30.0601100522657, 
-        price: "$700 per month", 
-        description: "Affordable 1-bedroom apartment in Gisozi", 
-        size: "65 sqm",
-        imageUrl: "images/apartments/gisozi.jpg",
-        link: "https://example.com/listing4"
-    },
-    { 
-        name: "Mater Boni Consili", 
-        lat: -2.596630334499189, 
-        lng: 29.747333310392225, 
-        price: "$1,000 per month", 
-        description: "Hostel apartment in Butare", 
-        size: "400 sqm",
-        imageUrl: "images/apartments/Boni.jpg",
-        link: "https://example.com/listing5"
-    },
-    { 
-        name: "Galileo Hotel", 
-        lat: -2.593057831475852, 
-        lng: 29.73711670060341,
-        price: "$1,000 per month", 
-        description: "Hostel apartment ", 
-        size: "250 sqm",
-        imageUrl: "images/apartments/Galileo.jpg",
-        link: "https://example.com/listing5"
-    }
-];
-
-
-// Geocoder
-/**
- * Initializes a geocoder using the Nominatim service from the Leaflet Control Geocoder library.
- * The geocoder is used to convert addresses into geographic coordinates and vice versa.
- *
- * @constant {L.Control.Geocoder} geocoder - The geocoder instance configured to use Nominatim.
- */
-const geocoder = L.Control.Geocoder.nominatim();
-
-// Search Button Event
-document.getElementById("searchBtn").addEventListener("click", () => {
-    const locationInput = document.getElementById("locationInput").value;
-    /**
-     * Retrieves the value from the input element with the ID "radiusInput",
-     * parses it as a floating-point number, and assigns it to the variable `range`.
-     * If the input value is not a valid number, defaults to 5.
-     *
-     * @constant {number} range - The radius value input by the user, defaulting to 5 if invalid.
-     */
-    const range = parseFloat(document.getElementById("radiusInput").value) || 5;
-
-    if (locationInput) {
-        geocoder.geocode(locationInput, results => {
-            if (results.length === 0) {
-                alert("Location not found");
-                return;
-            }
-
-            const result = results[0];
-            const userLocation = result.center;
-
-            map.setView(userLocation, 13);
-
-            // Clear existing markers (excluding tile layers)
-            map.eachLayer(layer => {
-                if (layer instanceof L.Marker) {
-                    map.removeLayer(layer);
-                }
-            });
-
-            // Add markers within the specified range
-            houses.forEach(house => {
-                const distance = map.distance(userLocation, [house.lat, house.lng]) / 1000; // Convert to km
-                if (distance <= range) {
-                    const marker = L.marker([house.lat, house.lng]).addTo(map);
-                    marker.bindPopup(`
-                        <div class="popup-content">
-                            <img src="${house.imageUrl}" alt="${house.name}" class="popup-image">
-                            <div class="popup-details">
-                                <h3>${house.name}</h3>
-                                <p>${house.description}</p>
-                                <p><strong>Size:</strong> ${house.size}</p>
-                                <p><strong>Price:</strong> ${house.price}</p>
-                                <a href="${house.link}" target="_blank" class="popup-link">View More</a>
-                            </div>
-                        </div>
-                    `);
-                }
-            });
-        });
-    }
-});
-
-// "Use My Location" button functionality
+// Event listener for "Use My Location" button
 document.getElementById("locationBtn").addEventListener("click", () => {
     const range = parseFloat(document.getElementById("radiusInput").value) || 5;
+    const minBedrooms = parseInt(document.getElementById("bedroomsModal").value) || 0;
+    const minBathrooms = parseInt(document.getElementById("bathroomsModal").value) || 0;
+    const minPrice = parseInt(document.getElementById("minPriceModal").value) || 0;  // Default to 0 if no min price
+    const maxPrice = parseInt(document.getElementById("maxPriceModal").value) || Infinity;  // Default to Infinity if no max price
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
-            position => {
+            (position) => {
                 const userLat = position.coords.latitude;
                 const userLng = position.coords.longitude;
-
-                map.setView([userLat, userLng], 13);
-                
-                // Add or update the user's location marker
                 addUserLocationMarker(userLat, userLng);
+                updateRadius(userLat, userLng, range);
 
-                // Clear existing markers except for the userMarker
-                map.eachLayer(layer => {
-                    if (layer instanceof L.Marker && layer !== userMarker) {
-                        map.removeLayer(layer);
-                    }
-                });
-
-                // Add markers for houses within range of user's location
-                houses.forEach(house => {
-                    /**
-                     * Calculates the distance between the user's location and the house location in kilometers.
-                     *
-                     * @param {number} userLat - The latitude of the user's location.
-                     * @param {number} userLng - The longitude of the user's location.
-                     * @param {Object} house - The house object containing its location coordinates.
-                     * @param {number} house.lat - The latitude of the house location.
-                     * @param {number} house.lng - The longitude of the house location.
-                     * @returns {number} The distance between the user's location and the house location in kilometers.
-                     */
-                    const distance = map.distance([userLat, userLng], [house.lat, house.lng]) / 1000;
-                    if (distance <= range) {
-                        const marker = L.marker([house.lat, house.lng]).addTo(map);
-                        marker.bindPopup(`
-                            <div class="popup-content">
-                                <img src="${house.imageUrl}" alt="${house.name}" class="popup-image">
-                                <div class="popup-details">
-                                    <h3>${house.name}</h3>
-                                    <p>${house.description}</p>
-                                    <p><strong>Size:</strong> ${house.size}</p>
-                                    <p><strong>Price:</strong> ${house.price}</p>
-                                    <a href="${house.link}" target="_blank" class="popup-link">View More</a>
-                                </div>
-                            </div>
-                        `);
-                    }
-                });
+                // Call the function to add house markers with all the necessary filters
+                addHouseMarkers(userLat, userLng, range, minBedrooms, minBathrooms, minPrice, maxPrice);
             },
-            error => {
+            () => {
                 alert("Unable to retrieve your location. Please enable location services.");
             }
         );
@@ -244,3 +137,68 @@ document.getElementById("locationBtn").addEventListener("click", () => {
         alert("Geolocation is not supported by your browser.");
     }
 });
+
+// Initialize the geocoder
+const geocoder = L.Control.Geocoder.nominatim();
+
+// Event listener for "Search" button
+document.getElementById("searchBtn").addEventListener("click", () => {
+    const locationInput = document.getElementById("locationInput").value;
+    const minBedrooms = parseInt(document.getElementById("bedroomsModal").value) || 0;
+    const minBathrooms = parseInt(document.getElementById("bathroomsModal").value) || 0;
+    const minPrice = parseInt(document.getElementById("minPriceModal").value) || 0;  // Default to 0 if no min price
+    const maxPrice = parseInt(document.getElementById("maxPriceModal").value) || Infinity;  // Default to Infinity if no max price
+    const range = parseFloat(document.getElementById("radiusInput").value) || 5;
+
+    if (locationInput) {
+        geocoder.geocode(locationInput, (results) => {
+            if (results.length === 0) {
+                alert("Location not found");
+                return;
+            }
+            const result = results[0];
+            const userLocation = result.center;
+            addUserLocationMarker(userLocation.lat, userLocation.lng);
+            updateRadius(userLocation.lat, userLocation.lng, range);
+
+            // Call the function to add house markers with all the necessary filters
+            addHouseMarkers(userLocation.lat, userLocation.lng, range, minBedrooms, minBathrooms, minPrice, maxPrice);
+        });
+    }
+});
+
+// Show the map modal when the button is clicked
+btnMap.onclick = function () {
+    modal.style.display = "block";
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 300);
+};
+
+// Close the modal when the close button is clicked
+close.onclick = function () {
+    modal.style.display = "none";
+};
+
+// Close the modal when the user clicks outside the modal
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
+
+
+// Function to get properties from Firestore using compat syntax
+async function getProperties() {
+    try {
+        const querySnapshot = await db.collection("properties").get();
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            console.log(doc.id, " => ", data);
+            // Here you can add the houses to your markers on the map
+            addHouseMarker(data);
+        });
+    } catch (error) {
+        console.error("Error retrieving properties: ", error);
+    }
+}
