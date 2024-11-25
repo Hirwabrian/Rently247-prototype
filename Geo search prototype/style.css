@@ -62,17 +62,21 @@ body {
     max-width: 1200px;
     margin: auto;
 }
-main {
-    flex: 1; /* Pushes the footer to the bottom by taking up remaining space */
-  }
 
-  footer {
+main {
+    flex: 1;
+    /* Pushes the footer to the bottom by taking up remaining space */
+}
+
+footer {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 1rem;
-  }
-.search-bar input, .search-bar select {
+}
+
+.search-bar input,
+.search-bar select {
     padding: 10px;
     margin-right: 15px;
     border-radius: 5px;
@@ -117,54 +121,80 @@ main {
 }
 
 .modal-content {
-    background-color: #0f3458; /* Darker background */
-    color: #f0f0f0; /* Light text for contrast */
+
     margin: 5% auto;
-    padding: 40px; /* Increased padding */
-    border-radius: 20px; /* Softer corners */
-    width: 90%; /* Slightly wider */
-    max-width: 800px; /* Maximum width for large screens */
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5); /* Deeper shadow */
+    background-color: #fff;
+    color: #ffffff;
+    padding: 40px;
+    /* Increased padding */
+    border-radius: 20px;
+    /* Softer corners */
+    width: 90%;
+    /* Slightly wider */
+    max-width: 800px;
+    /* Maximum width for large screens */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+    /* Deeper shadow */
     font-family: 'Poppins', sans-serif;
 }
 
 .modal-content h2 {
-    color: #ecf0f1;
+    color: #000;
     font-size: 1.5em;
     margin-bottom: 10px;
     text-align: center;
 }
 
 .modal-content label {
-    color: #dcdcdc;
+    color: #000;
     display: block;
     margin: 10px 0 5px;
     font-size: 0.9em;
 }
 
 .modal-content input {
-        background-color: #001f3f; /* Darker navy background for contrast */
-    color: #ffffff; /* White text for better readability */
-    padding: 12px 15px; /* Slightly larger padding for better usability */
-    border-radius: 8px; /* Softer rounded edges */
-    border: 1px solid #004080; /* Accent border color */
-    width: calc(100% - 30px); /* Adjusted width for better spacing */
-    margin-bottom: 20px; /* Increased spacing for a cleaner layout */
-    font-size: 1.1em; /* Slightly larger text */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    transition: all 0.3s ease-in-out; /* Smooth transitions */
-    font-family: 'Poppins', sans-serif; /* Modern font style */ 
+    background-color: #001f3f;
+    /* Darker navy background for contrast */
+    color: #ffffff;
+    /* White text for better readability */
+    padding: 12px 15px;
+    /* Slightly larger padding for better usability */
+    border-radius: 8px;
+    /* Softer rounded edges */
+    border: 1px solid #004080;
+    /* Accent border color */
+    width: calc(100% - 30px);
+    /* Adjusted width for better spacing */
+    margin-bottom: 20px;
+    /* Increased spacing for a cleaner layout */
+    font-size: 1.1em;
+    /* Slightly larger text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow for depth */
+    transition: all 0.3s ease-in-out;
+    /* Smooth transitions */
+    font-family: 'Poppins', sans-serif;
+    /* Modern font style */
 }
 
 .modal-content input:focus {
-    outline: none; /* Removes the default browser focus outline */
-    border: 2px solid #00ace6; /* Highlight border on focus */
-    box-shadow: 0 0 10px rgba(0, 172, 230, 0.8); /* Glow effect on focus */
-    background-color: #002d5f; /* Slightly lighter background on focus */
-    transform: scale(1.02); /* Subtle scaling effect */
+    outline: none;
+    /* Removes the default browser focus outline */
+    border: 2px solid #00ace6;
+    /* Highlight border on focus */
+    box-shadow: 0 0 10px rgba(0, 172, 230, 0.8);
+    /* Glow effect on focus */
+    background-color: #002d5f;
+    /* Slightly lighter background on focus */
+    transform: scale(1.02);
+    /* Subtle scaling effect */
 }
 
-
+.modal-content input::placeholder {
+    color: #b0c4de; /* Soft blue for placeholder text */
+    font-style: italic; /* Italicized placeholder for emphasis */
+    opacity: 0.8; /* Slight transparency */
+}
 
 .modal-content select {
     width: 100%;
@@ -206,7 +236,7 @@ main {
 }
 
 .close {
-    color: #ffffff;
+    color: #0c2d55;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
@@ -221,12 +251,18 @@ main {
 }
 
 #map {
-    height: 600px; /* Increased height */
-    width: 90%; /* Wider map for responsiveness */
-    margin: 30px auto; /* Centered with margin */
-    border-radius: 15px; /* Rounded edges */
-    border: 2px solid #cccccc; /* Subtle border */
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    height: 600px;
+    /* Increased height */
+    width: 90%;
+    /* Wider map for responsiveness */
+    margin: 30px auto;
+    /* Centered with margin */
+    border-radius: 15px;
+    /* Rounded edges */
+    border: 2px solid #cccccc;
+    /* Subtle border */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow */
 }
 
 
@@ -290,11 +326,16 @@ input[type="text"] {
 }
 
 .leaflet-container {
-    height: 100%; /* Full height */
-    width: 100%; /* Full width */
-    max-width: 100%; /* Responsive max width */
-    max-height: 100%; /* Responsive max height */
-    border-radius: 15px; /* Rounded corners */
+    height: 100%;
+    /* Full height */
+    width: 100%;
+    /* Full width */
+    max-width: 100%;
+    /* Responsive max width */
+    max-height: 100%;
+    /* Responsive max height */
+    border-radius: 15px;
+    /* Rounded corners */
 }
 
 
@@ -304,3 +345,26 @@ input[type="text"] {
 .leaflet-control-attribution {
     filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
 }
+
+/* Pacifique */
+#searchBtn,
+#locationBtn {
+    background-color: #0c2d55;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+}
+
+
+
+
+
+
+/* Shafii */
