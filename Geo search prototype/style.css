@@ -48,6 +48,9 @@ body {
     margin: 0;
     padding: 0;
     background-color: #eeeeea;
+    flex-direction: column;
+    min-height: 100vh;
+    display: flex;
 }
 
 .search-bar {
@@ -59,7 +62,16 @@ body {
     max-width: 1200px;
     margin: auto;
 }
+main {
+    flex: 1; /* Pushes the footer to the bottom by taking up remaining space */
+  }
 
+  footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
 .search-bar input, .search-bar select {
     padding: 10px;
     margin-right: 15px;
@@ -105,16 +117,15 @@ body {
 }
 
 .modal-content {
-    background-color: #003366;
-    color: #ffffff;
+    background-color: #0f3458; /* Darker background */
+    color: #f0f0f0; /* Light text for contrast */
     margin: 5% auto;
-    padding: 30px;
-    border-radius: 15px;
-    width: 80%;
-    max-width: 1000px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    padding: 40px; /* Increased padding */
+    border-radius: 20px; /* Softer corners */
+    width: 90%; /* Slightly wider */
+    max-width: 800px; /* Maximum width for large screens */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5); /* Deeper shadow */
     font-family: 'Poppins', sans-serif;
-    justify-content: space-between;
 }
 
 .modal-content h2 {
@@ -202,12 +213,14 @@ body {
 }
 
 #map {
-    height: 500px;
-    width: calc(100% - 300px);
-    margin-top: 20px;
-    border-radius: 10px;
-    border: 1px solid #cccccc;
+    height: 600px; /* Increased height */
+    width: 90%; /* Wider map for responsiveness */
+    margin: 30px auto; /* Centered with margin */
+    border-radius: 15px; /* Rounded edges */
+    border: 2px solid #cccccc; /* Subtle border */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow */
 }
+
 
 button {
     background-color: #007bff;
@@ -269,11 +282,13 @@ input[type="text"] {
 }
 
 .leaflet-container {
-    height: 100%;
-    width: 100%;
-    max-width: 100%;
-    max-height: 100%;
+    height: 100%; /* Full height */
+    width: 100%; /* Full width */
+    max-width: 100%; /* Responsive max width */
+    max-height: 100%; /* Responsive max height */
+    border-radius: 15px; /* Rounded corners */
 }
+
 
 .leaflet-layer,
 .leaflet-control-zoom-in,
