@@ -143,19 +143,31 @@ main {
 }
 
 .modal-content input {
-    background-color: #002244;
-    color: #ffffff;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #cccccc;
-    width: calc(100% - 20px);
-    margin-bottom: 15px;
-    font-size: 1em;
+        background-color: #001f3f; /* Darker navy background for contrast */
+    color: #ffffff; /* White text for better readability */
+    padding: 12px 15px; /* Slightly larger padding for better usability */
+    border-radius: 8px; /* Softer rounded edges */
+    border: 1px solid #004080; /* Accent border color */
+    width: calc(100% - 30px); /* Adjusted width for better spacing */
+    margin-bottom: 20px; /* Increased spacing for a cleaner layout */
+    font-size: 1.1em; /* Slightly larger text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: all 0.3s ease-in-out; /* Smooth transitions */
+    font-family: 'Poppins', sans-serif; /* Modern font style */ 
 }
 
 .modal-content input:focus {
-    outline: none;
-    border: 1px solid #00ace6;
+    outline: none; /* Removes the default browser focus outline */
+    border: 2px solid #00ace6; /* Highlight border on focus */
+    box-shadow: 0 0 10px rgba(0, 172, 230, 0.8); /* Glow effect on focus */
+    background-color: #002d5f; /* Slightly lighter background on focus */
+    transform: scale(1.02); /* Subtle scaling effect */
+}
+
+.modal-content input::placeholder {
+    color: #b0c4de; /* Soft blue for placeholder text */
+    font-style: italic; /* Italicized placeholder for emphasis */
+    opacity: 0.8; /* Slight transparency */
 }
 
 .modal-content select {
