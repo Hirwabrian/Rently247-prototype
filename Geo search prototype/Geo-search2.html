@@ -17,90 +17,94 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Search Bar -->
-    <div class="search-bar">
-        <input type="text" id="locationSearch" placeholder="Search locations" />
-        
-        <div class="price-range">
-            <input type="number" id="minPrice" placeholder="Min Price" />
-            <input type="number" id="maxPrice" placeholder="Max Price" />
-        </div>
-
-        <div class="filters">
-            <select id="bedrooms">
-                <option value="any">Bedrooms</option>
-                <option value="1">1 Bedroom</option>
-                <option value="2">2 Bedrooms</option>
-                <option value="3">3 Bedrooms</option>
-                <option value="4">4 Bedrooms</option>
-                <option value="5">5 Bedrooms</option>
-                <option value="6">6 Bedrooms</option>
-                <option value="7+">7+ Bedrooms</option>
-            </select>
-
-            <select id="bathrooms">
-                <option value="any">Bathrooms</option>
-                <option value="1">1 Bathroom</option>
-                <option value="2">2 Bathrooms</option>
-                <option value="3">3 Bathrooms</option>
-                <option value="4+">4+ Bathrooms</option>
-            </select>
-        </div>
-
-        <!-- Default Search Button -->
-        <button id="defaultSearchBtn">Search</button>
-        
-        <!-- Open Map Button (Advanced Search) -->
-        <button id="openMapBtn">Open Map</button>
+<header>
+<!-- Search Bar -->
+<div class="search-bar">
+    <input type="text" id="locationSearch" placeholder="Search locations" />
+    
+    <div class="price-range">
+        <input type="number" id="minPrice" placeholder="Min Price" />
+        <input type="number" id="maxPrice" placeholder="Max Price" />
     </div>
 
-    <!-- Map Modal (Popup) -->
-    <div id="mapModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-          <h2>Search for Houses</h2>
-          
-          <label for="priceinput">Price Range</label>
-          <div class="price-range">
-            <input type="number" id="minPriceModal" placeholder="Min Price" />
-            <input type="number" id="maxPriceModal" placeholder="Max Price" />
-        </div>
+    <div class="filters">
+        <select id="bedrooms">
+            <option value="any">Bedrooms</option>
+            <option value="1">1 Bedroom</option>
+            <option value="2">2 Bedrooms</option>
+            <option value="3">3 Bedrooms</option>
+            <option value="4">4 Bedrooms</option>
+            <option value="5">5 Bedrooms</option>
+            <option value="6">6 Bedrooms</option>
+            <option value="7+">7+ Bedrooms</option>
+        </select>
 
-        <div class="filters">
-            <label for="bedroomsModal">Bedrooms</label>
-            <select id="bedroomsModal">
-                <option value="any">Bedrooms</option>
-                <option value="1">1 Bedroom</option>
-                <option value="2">2 Bedrooms</option>
-                <option value="3">3 Bedrooms</option>
-                <option value="4">4 Bedrooms</option>
-                <option value="5">5 Bedrooms</option>
-                <option value="6">6 Bedrooms</option>
-                <option value="7+">7+ Bedrooms</option>
-            </select>
-            
-            <label for="bathroomsModal">Bathrooms</label>
-            <select id="bathroomsModal">
-                <option value="any">Bathrooms</option>
-                <option value="1">1 Bathroom</option>
-                <option value="2">2 Bathrooms</option>
-                <option value="3">3 Bathrooms</option>
-                <option value="4+">4+ Bathrooms</option>
-            </select>
-        </div>
-          <label for="locationInput">Location</label>
-          <input type="text" id="locationInput" placeholder="Enter a location" />
-            
-          <label for="radiusInput">Range (km)</label>
-          <input type="number" id="radiusInput" placeholder="Default: 5 km" />
-            
-          <button id="searchBtn">Search</button>
-          <button id="locationBtn">Use My Location</button>
-          
-          <div id="map" style="width: 100%; height: 400px;"></div>
-        </div>
+        <select id="bathrooms">
+            <option value="any">Bathrooms</option>
+            <option value="1">1 Bathroom</option>
+            <option value="2">2 Bathrooms</option>
+            <option value="3">3 Bathrooms</option>
+            <option value="4+">4+ Bathrooms</option>
+        </select>
     </div>
+
+    <!-- Default Search Button -->
+    <button id="defaultSearchBtn">Search</button>
+    
+    <!-- Open Map Button (Advanced Search) -->
+    <button id="openMapBtn">Open Map</button>
+</div>
+
+<!-- Map Modal (Popup) -->
+<div id="mapModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+      <h2>Search for Houses</h2>
+      
+      <label for="priceinput">Price Range</label>
+      <div class="price-range">
+        <input type="number" id="minPriceModal" placeholder="Min Price" />
+        <input type="number" id="maxPriceModal" placeholder="Max Price" />
+    </div>
+
+    <div class="filters">
+        <label for="bedroomsModal">Bedrooms</label>
+        <select id="bedroomsModal">
+            <option value="any">Bedrooms</option>
+            <option value="1">1 Bedroom</option>
+            <option value="2">2 Bedrooms</option>
+            <option value="3">3 Bedrooms</option>
+            <option value="4">4 Bedrooms</option>
+            <option value="5">5 Bedrooms</option>
+            <option value="6">6 Bedrooms</option>
+            <option value="7+">7+ Bedrooms</option>
+        </select>
+        
+        <label for="bathroomsModal">Bathrooms</label>
+        <select id="bathroomsModal">
+            <option value="any">Bathrooms</option>
+            <option value="1">1 Bathroom</option>
+            <option value="2">2 Bathrooms</option>
+            <option value="3">3 Bathrooms</option>
+            <option value="4+">4+ Bathrooms</option>
+        </select>
+    </div>
+      <label for="locationInput">Location</label>
+      <input type="text" id="locationInput" placeholder="Enter a location" />
+        
+      <label for="radiusInput">Range (km)</label>
+      <input type="number" id="radiusInput" placeholder="Default: 5 km" />
+        
+      <button id="searchBtn">Search</button>
+      <button id="locationBtn">Use My Location</button>
+      
+      <div id="map" style="width: 100%; height: 400px;"></div>
+    </div>
+</div>
+</header>
+  <main>
+    
+  </main>  
     
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
@@ -109,5 +113,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <script src="search.js"></script>
+    <iframe src="footer.html" style="width: 100%; border: none;" height="300"></iframe>
 </body>
 </html>
