@@ -116,18 +116,22 @@ document.getElementById("locationBtn").addEventListener("click", () => {
     const minBedrooms = parseInt(document.getElementById("bedroomsModal").value) || 0;
     const minBathrooms = parseInt(document.getElementById("bathroomsModal").value) || 0;
 
-    // Ensure minimum and maximum price move in 100s
-    const minPriceInput = parseInt(document.getElementById("minPriceModal").value) || 0;
-    const maxPriceInput = parseInt(document.getElementById("maxPriceModal").value) || Infinity;
+    // Validate and ensure prices are non-negative
+    let minPriceInput = parseInt(document.getElementById("minPriceModal").value) || 0;
+    let maxPriceInput = parseInt(document.getElementById("maxPriceModal").value) || Infinity;
+
+    minPriceInput = Math.max(0, minPriceInput); // Ensure minimum price is >= 0
+    maxPriceInput = Math.max(0, maxPriceInput); // Ensure maximum price is >= 0
 
     // Rounding to the nearest 100
     const minPrice = Math.ceil(minPriceInput / 100) * 100; 
-    const maxPrice = Math.ceil(maxPriceInput / 100) * 100; 
+    const maxPrice = Math.ceil(maxPriceInput / 100) * 100;
 
     console.log(`Radius: ${range} km`);
     console.log(`Minimum Bedrooms: ${minBedrooms}`);
     console.log(`Minimum Bathrooms: ${minBathrooms}`);
     console.log(`Price Range: ${minPrice.toLocaleString('en-RW')} RWF - ${maxPrice.toLocaleString('en-RW')} RWF`);
+
 
 
 
