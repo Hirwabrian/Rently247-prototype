@@ -105,7 +105,7 @@ body {
 }
 
 .modal-content {
-    background-color: #003366;
+    background-color: #fff;
     color: #ffffff;
     margin: 5% auto;
     padding: 30px;
@@ -118,14 +118,14 @@ body {
 }
 
 .modal-content h2 {
-    color: #ecf0f1;
+    color: #000;
     font-size: 1.5em;
     margin-bottom: 10px;
     text-align: center;
 }
 
 .modal-content label {
-    color: #dcdcdc;
+    color: #000;
     display: block;
     margin: 10px 0 5px;
     font-size: 0.9em;
@@ -282,7 +282,22 @@ input[type="text"] {
     filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
 }
 /* Pacifique */
+#searchBtn, #locationBtn{
+    background-color: #0c2d55;  
+    border: none;
+    color: white; 
+    padding: 15px 32px; 
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer; 
 
+}
+.modal-content{
+
+}
 
 
 
