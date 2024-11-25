@@ -117,9 +117,10 @@ main {
 }
 
 .modal-content {
-    background-color: #0f3458; /* Darker background */
-    color: #f0f0f0; /* Light text for contrast */
-    margin: 5% auto;
+
+   margin: 5% auto;
+  background-color: #fff;
+    color: #ffffff;
     padding: 40px; /* Increased padding */
     border-radius: 20px; /* Softer corners */
     width: 90%; /* Slightly wider */
@@ -129,14 +130,14 @@ main {
 }
 
 .modal-content h2 {
-    color: #ecf0f1;
+    color: #000;
     font-size: 1.5em;
     margin-bottom: 10px;
     text-align: center;
 }
 
 .modal-content label {
-    color: #dcdcdc;
+    color: #000;
     display: block;
     margin: 10px 0 5px;
     font-size: 0.9em;
@@ -308,3 +309,25 @@ input[type="text"] {
 .leaflet-control-attribution {
     filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
 }
+/* Pacifique */
+#searchBtn, #locationBtn{
+    background-color: #0c2d55;  
+    border: none;
+    color: white; 
+    padding: 15px 32px; 
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer; 
+
+}
+.modal-content{
+
+}
+
+
+
+
+/* Shafii */
