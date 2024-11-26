@@ -235,7 +235,6 @@ footer {
 
 .modal-content button:hover {
     background-color: #008cb3;
-    transform: scale(1.05);
 }
 
 .close {
@@ -350,12 +349,25 @@ input[type="text"] {
 }
 
 /* Pacifique */
-#searchBtn,
-#locationBtn {
+#searchBtn {
     background-color: #0c2d55;
     border: none;
     color: white;
     padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+}
+
+#locationBtn {
+    background-color: #fff;
+    border: solid 2px #0c2d55;
+    color: #0c2d55;
+    padding: 12px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
