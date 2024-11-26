@@ -153,9 +153,9 @@ footer {
 }
 
 .modal-content input {
-    background-color: #001f3f;
+    background-color: #f9fafb;
     /* Darker navy background for contrast */
-    color: #ffffff;
+    color: #010000;
     /* White text for better readability */
     padding: 12px 15px;
     /* Slightly larger padding for better usability */
@@ -169,7 +169,7 @@ footer {
     /* Increased spacing for a cleaner layout */
     font-size: 1.1em;
     /* Slightly larger text */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(218, 214, 214, 0.2);
     /* Subtle shadow for depth */
     transition: all 0.3s ease-in-out;
     /* Smooth transitions */
@@ -184,15 +184,14 @@ footer {
     /* Highlight border on focus */
     box-shadow: 0 0 10px rgba(0, 172, 230, 0.8);
     /* Glow effect on focus */
-    background-color: #002d5f;
+    background-color: #e4e8ec;
     /* Slightly lighter background on focus */
     transform: scale(1.02);
     /* Subtle scaling effect */
 }
 
 .modal-content input::placeholder {
-    color: #b0c4de; /* Soft blue for placeholder text */
-    font-style: italic; /* Italicized placeholder for emphasis */
+    color: #080a0d; /* Soft blue for placeholder text */
     opacity: 0.8; /* Slight transparency */
 }
 
@@ -414,7 +413,7 @@ button {
     outline: none;
 }
 
-.modal-content {}
+
 
 
 
