@@ -345,34 +345,42 @@ input[type="text"] {
     filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
 }
 
-/* Pacifique */
-#searchBtn {
-    background-color: #0c2d55;
+button {
     border: none;
-    color: white;
-    padding: 15px 32px;
+    padding: 15px 32px; 
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    transition: all 0.3s ease-in-out; 
+}
 
+#searchBtn {
+    background-color: #0c2d55;
+    border: 2px solid transparent; 
+    color: white;
+}
+
+#searchBtn:hover {
+    background-color: #fff;
+    border: 2px solid #0c2d55; 
+    color: #0c2d55;
 }
 
 #locationBtn {
     background-color: #fff;
-    border: solid 2px #0c2d55;
+    border: 2px solid #0c2d55;
     color: #0c2d55;
-    padding: 12px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-
 }
+
+#locationBtn:hover {
+    background-color: #0c2d55;
+    border: 2px solid transparent; 
+    color: white;
+}
+
 
 
 .filters label {
