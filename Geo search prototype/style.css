@@ -191,12 +191,9 @@ footer {
 }
 
 .modal-content input::placeholder {
-    color: #b0c4de;
-    /* Soft blue for placeholder text */
-    font-style: italic;
-    /* Italicized placeholder for emphasis */
-    opacity: 0.8;
-    /* Slight transparency */
+    color: #b0c4de; /* Soft blue for placeholder text */
+    font-style: italic; /* Italicized placeholder for emphasis */
+    opacity: 0.8; /* Slight transparency */
 }
 
 .modal-content select {
