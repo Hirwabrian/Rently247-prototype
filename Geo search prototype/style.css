@@ -125,7 +125,7 @@ footer {
     margin: 5% auto;
     background-color: #fff;
     color: #ffffff;
-    padding: 40px;
+    padding: 40px 20px;
     /* Increased padding */
     border-radius: 20px;
     /* Softer corners */
@@ -232,7 +232,6 @@ footer {
 
 .modal-content button:hover {
     background-color: #008cb3;
-    transform: scale(1.05);
 }
 
 .close {
@@ -346,23 +345,76 @@ input[type="text"] {
     filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
 }
 
-/* Pacifique */
-#searchBtn,
-#locationBtn {
-    background-color: #0c2d55;
+button {
     border: none;
-    color: white;
-    padding: 15px 32px;
+    padding: 15px 32px; 
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    transition: all 0.3s ease-in-out; 
+}
 
+#searchBtn {
+    background-color: #0c2d55;
+    border: 2px solid transparent; 
+    color: white;
+}
+
+#searchBtn:hover {
+    background-color: #fff;
+    border: 2px solid #0c2d55; 
+    color: #0c2d55;
+}
+
+#locationBtn {
+    background-color: #fff;
+    border: 2px solid #0c2d55;
+    color: #0c2d55;
+}
+
+#locationBtn:hover {
+    background-color: #0c2d55;
+    border: 2px solid transparent; 
+    color: white;
 }
 
 
+
+.filters label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+}
+
+.filters select {
+    appearance: none; 
+    -moz-appearance: none;
+    -webkit-appearance: none;
+
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="none" stroke="%23333" stroke-width="0.5" d="M0 0 L2 2 L4 0 Z"/></svg>') no-repeat right 10px center/10px 10px, #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.filters select:hover {
+    border-color: #007bff;
+}
+
+.filters select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.modal-content {}
 
 
 
