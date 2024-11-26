@@ -374,6 +374,38 @@ input[type="text"] {
 
 }
 
+
+.filters label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+}
+
+.filters select {
+    appearance: none; 
+    -moz-appearance: none;
+    -webkit-appearance: none;
+
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="none" stroke="%23333" stroke-width="0.5" d="M0 0 L2 2 L4 0 Z"/></svg>') no-repeat right 10px center/10px 10px, #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.filters select:hover {
+    border-color: #007bff;
+}
+
+.filters select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
 .modal-content {}
 
 
