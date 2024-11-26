@@ -5,7 +5,7 @@
     padding: 1rem;
   }
   main {
-    flex: 1; /* Pushes the footer to the bottom by taking up remaining space */
+    flex: 1; 
   }
   
   .container {
