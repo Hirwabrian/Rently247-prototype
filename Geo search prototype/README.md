@@ -30,9 +30,6 @@ An interactive map application that helps users locate properties around Kigali,
 
 ---
 
-## Demo
-_Details about a working demo or screenshots can go here._
-
 ---
 
 ## Technologies Used
